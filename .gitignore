@@ -1,0 +1,25 @@
+# Compiled output
+bin/
+*.class
+
+# Eclipse project files
+.project
+.classpath
+.settings/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Optional: package artifacts
+*.jar
+*.war
+*.ear
+
+# Optional: temporary files
+*.tmp
+*.swp
+*~
