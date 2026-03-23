@@ -1,7 +1,7 @@
 # Databázový systém zaměstnanců
 
 ## Autoři
-Simon Veselý - 271017
+Simon Veselý - 271017 <br>
 Jan Ručka - 260399
 
 ## Popis projektu
