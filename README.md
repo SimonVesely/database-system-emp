@@ -1,8 +1,40 @@
 # Databázový systém zaměstnanců
 
+## Rozdělení práce
+### 1. Týden
+- Návrh a implementace abstraktní třídy `Zamestnanec`
+- Implementace tříd `DatovyAnalytik` a `BezpecnostniSpecialista`
+- Interface `IDovednost`
+- Metody pro přidání/odebrání spolupráce a zaměstnance
+- Základní statistiky jednoho zaměstnance
+- Hlavní třída `Firma` (použití `HashMap<Integer, Zamestnanec>`)
+- Základní textové menu
+- Serializace / ukládání a načítání jednoho zaměstnance do souboru
+- Implementace funkcí a), b), c), d)
+
+### 2. Týden
+- Implementace specifických dovedností skupin:
+  - `nejviceSpolecnychSpolupracovniku()` pro Datového analytika
+  - `vypocitejRizikoveSkore()` pro Bezpečnostního specialistu
+- Spuštění dovednosti podle skupiny (funkce e)
+- Abecední výpis zaměstnanců podle příjmení ve skupinách (f)
+- Globální statistiky (g) – převažující kvalita spolupráce + zaměstnanec s nejvíce vazbami
+- Výpis počtu zaměstnanců ve skupinách (h)
+- Validace vstupů a ošetření chyb
+- Vylepšení menu a uživatelského rozhraní
+
+### 2. Týden
+- Třída `SqlBackup` – ukládání všech dat do SQLite při ukončení programu (k)
+- Načítání dat z SQLite při spuštění (l)
+- Dokumentace (JavaDoc) + README
+- Testování celého systému (včetně režimu bez SQL)
+- Komplexní ošetření výjimek
+- Finální ladění, testování edge cases
+- Příprava projektu k odevzdání (struktura, kompilace, spuštění)
+
 ## Autoři
-Simon Veselý - 271017 <br>
-Jan Ručka - 260399
+* Simon Veselý - 271017
+* Jan Ručka - 260399
 
 ## Popis projektu
 Tento projekt představuje jednoduchý databázový systém pro správu zaměstnanců technologické firmy. Každý zaměstnanec má své identifikační údaje a seznam spolupracovníků včetně úrovně spolupráce.
