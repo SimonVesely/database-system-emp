@@ -1,7 +1,8 @@
 package database_system_emp;
 
-public enum Groups{
+public enum Groups {
 
-    DataAnalyst, SecuritySpecialist
+  DATAANALYST,
+  SECURITYSPECIALIST
 
 }
