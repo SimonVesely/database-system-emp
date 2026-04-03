@@ -3,7 +3,7 @@ package database_system_emp;
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class Employee {
+public abstract class Employee implements Skill {
 
   private static int counter = 0;
 
@@ -11,8 +11,8 @@ public abstract class Employee {
   private String name;
   private String surName;
   private String yearOfBirth;
-  private Map<Integer, Integer> cooperation;
-  private Groups group;
+  private final Groups group;
+  private Map<Integer, CooperationQuality> cooperation = new HashMap<>();
 
   public Employee(String name, String surName, String yearOfBirth,
       Groups group) {
@@ -21,7 +21,6 @@ public abstract class Employee {
     this.name = name;
     this.surName = surName;
     this.yearOfBirth = yearOfBirth;
-    this.cooperation = new HashMap<>();
     this.group = group;
   }
 
@@ -57,7 +56,23 @@ public abstract class Employee {
     this.yearOfBirth = yearOfBirth;
   }
 
-  public void addCooperation(int id, int quality) {
+  public Map<Integer, CooperationQuality> getCooperation() {
+      return cooperation;
+  }
+
+  public void addCooperation(int id, CooperationQuality quality) {
     cooperation.put(id, quality);
+  }
+
+  public void removeCooperation(int id) {
+    cooperation.remove(id);
+  }
+
+  @Override
+  public abstract void performSkill();
+
+  @Override
+  public String getSkillName(){
+    return this.getClass().getSimpleName();
   }
 }
