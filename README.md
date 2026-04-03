@@ -2,8 +2,8 @@
 
 ## Rozdělení práce
 ### 1. Týden
-- Návrh a implementace abstraktní třídy `Zamestnanec`
-- Implementace tříd `DatovyAnalytik` a `BezpecnostniSpecialista`
+- Návrh a implementace abstraktní třídy `Zamestnanec` ✅
+- Implementace tříd `DatovyAnalytik` a `BezpecnostniSpecialista` ✅
 - Interface `IDovednost`
 - Metody pro přidání/odebrání spolupráce a zaměstnance
 - Základní statistiky jednoho zaměstnance
