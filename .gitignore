@@ -7,6 +7,9 @@ bin/
 .classpath
 .settings/
 
+# Database
+*.db
+
 # Logs
 *.log
 
