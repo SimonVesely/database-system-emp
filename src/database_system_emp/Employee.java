@@ -14,8 +14,7 @@ public abstract class Employee implements Skill {
   private final Groups group;
   private Map<Integer, CooperationQuality> cooperation = new HashMap<>();
 
-  public Employee(String name, String surName, String yearOfBirth,
-      Groups group) {
+  public Employee(String name, String surName, String yearOfBirth, Groups group) {
 
     this.id = counter++;
     this.name = name;
@@ -42,6 +41,10 @@ public abstract class Employee implements Skill {
 
   public String getYearOfBirth() {
     return yearOfBirth;
+  }
+
+  public void setId(int id){
+    this.id = id;
   }
 
   public void setName(String name) {
