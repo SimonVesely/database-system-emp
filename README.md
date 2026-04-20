@@ -1,108 +1,117 @@
 # Databázový systém zaměstnanců
 
-## Rozdělení práce
-### 1. Týden
-- Návrh a implementace abstraktní třídy `Zamestnanec` ✅
-- Implementace tříd `DatovyAnalytik` a `BezpecnostniSpecialista` ✅
-- Interface `IDovednost`✅
-- Metody pro přidání/odebrání spolupráce a zaměstnance
-- Základní statistiky jednoho zaměstnance
-- Hlavní třída `Firma` (použití `HashMap<Integer, Zamestnanec>`)
-- Základní textové menu
-- Serializace / ukládání a načítání jednoho zaměstnance do souboru
-- Implementace funkcí a), b), c), d)
-
-### 2. Týden
-- Implementace specifických dovedností skupin:
-  - `nejviceSpolecnychSpolupracovniku()` pro Datového analytika
-  - `vypocitejRizikoveSkore()` pro Bezpečnostního specialistu
-- Spuštění dovednosti podle skupiny (funkce e)
-- Abecední výpis zaměstnanců podle příjmení ve skupinách (f)
-- Globální statistiky (g) – převažující kvalita spolupráce + zaměstnanec s nejvíce vazbami
-- Výpis počtu zaměstnanců ve skupinách (h)
-- Validace vstupů a ošetření chyb
-- Vylepšení menu a uživatelského rozhraní
-
-### 2. Týden
-- Třída `SqlBackup` – ukládání všech dat do SQLite při ukončení programu (k)
-- Načítání dat z SQLite při spuštění (l)
-- Dokumentace (JavaDoc) + README
-- Testování celého systému (včetně režimu bez SQL)
-- Komplexní ošetření výjimek
-- Finální ladění, testování edge cases
-- Příprava projektu k odevzdání (struktura, kompilace, spuštění)
-
 ## Autoři
-* Simon Veselý - 271017
-* Jan Ručka - 260399
-
-## Popis projektu
-Tento projekt představuje jednoduchý databázový systém pro správu zaměstnanců technologické firmy. Každý zaměstnanec má své identifikační údaje a seznam spolupracovníků včetně úrovně spolupráce.
-
-Systém umožňuje evidenci zaměstnanců, správu vztahů mezi nimi a provádění analytických a bezpečnostních operací.
+- Simon Veselý — 271017  
+- Jan Ručka — 260399
 
 ---
 
-## Datový model
+## Popis projektu
+
+Projekt představuje konzolovou Java aplikaci pro správu zaměstnanců technologické firmy.
+
+Každý zaměstnanec obsahuje základní identifikační údaje a evidenci spoluprací s ostatními zaměstnanci včetně kvality vztahu.
+
+Součástí systému je také lokální SQL databáze SQLite, která slouží jako záloha dat mezi jednotlivými spuštěními programu.
+
+Aplikace využívá principy objektově orientovaného programování, dědičnost, abstraktní třídy, rozhraní a dynamické datové struktury.
+
+---
+
+## Datový model zaměstnance
 
 Každý zaměstnanec obsahuje:
-- ID (automaticky generované)
+
+- automaticky generované ID
 - jméno
 - příjmení
 - rok narození
-- seznam spolupracovníků:
-  - ID spolupracovníka
-  - úroveň spolupráce (špatná / průměrná / dobrá)
+- skupinu zaměstnance
+- seznam spolupracovníků
+- úroveň spolupráce:
+  - BAD
+  - AVERAGE
+  - GOOD
 
 ---
 
-## Skupiny zaměstnanců
+## Typy zaměstnanců
 
 ### Datoví analytici
-- určují, se kterým spolupracovníkem mají nejvíce společných spolupracovníků
+
+Disponují analytickou dovedností:
+
+- nalezení zaměstnance s největším počtem společných spolupracovníků
 
 ### Bezpečnostní specialisté
-- vyhodnocují rizikovost spolupráce
-- počítají rizikové skóre (vlastní algoritmus)
 
-> Každý zaměstnanec je při vytvoření zařazen do jedné skupiny a nelze jej později změnit.
+Disponují bezpečnostní dovedností:
 
----
+- výpočet rizikového skóre zaměstnance
+- hodnocení spolupráce pomocí vlastního algoritmu založeného na kvalitě vztahů a počtu vazeb
 
-## Funkcionalita
-
-- Přidání zaměstnance
-- Přidání spolupráce mezi zaměstnanci
-- Odebrání zaměstnance (včetně vazeb)
-- Vyhledání zaměstnance podle ID
-- Spuštění specifické dovednosti dle skupiny
-- Abecední výpis zaměstnanců podle příjmení ve skupinách
-- Statistiky:
-  - převažující kvalita spolupráce
-  - zaměstnanec s nejvíce vazbami
-- Výpis počtu zaměstnanců ve skupinách
-- Uložení zaměstnance do souboru
-- Načtení zaměstnance ze souboru
-- Uložení všech dat do SQL databáze při ukončení
-- Načtení dat z SQL databáze při spuštění
-
-> SQL databáze slouží pouze jako záloha – aplikace musí fungovat i bez ní.
+> Typ zaměstnance je zvolen při vytvoření a nelze jej později změnit.
 
 ---
 
-## Technické požadavky
+## Implementované funkce
 
-- Objektově orientované programování (OOP)
-- Použití alespoň jedné abstraktní třídy nebo rozhraní
-- Použití alespoň jedné dynamické datové struktury
+- přidání zaměstnance
+- odebrání zaměstnance
+- vyhledání zaměstnance podle ID nebo jména
+- přidání spolupráce mezi zaměstnanci
+- odstranění vazeb při smazání zaměstnance
+- spuštění speciální dovednosti zaměstnance
+- abecední výpis zaměstnanců podle příjmení
+- statistiky systému
+- počet zaměstnanců v jednotlivých skupinách
+- automatické načtení dat z SQLite při spuštění
+- automatické uložení dat do SQLite při ukončení
 
 ---
 
-## Spuštění projektu manuálně
+## Statistiky systému
+
+Program umí zobrazit:
+
+- zaměstnance s nejvyšším počtem spoluprací
+- převažující kvalitu spolupráce v systému
+- počet zaměstnanců dle skupin
+
+---
+
+## Použité technologie
+
+- Java
+- SQLite
+- JDBC Driver (`sqlite-jdbc`)
+- OOP návrh
+- `ArrayList`
+- `HashMap`
+
+---
+
+## Struktura projektu
+
+```text
+src/
+└── database_system_emp/
+    ├── Main.java
+    ├── ConsoleInterface.java
+    ├── Database.java
+    ├── Employee.java
+    ├── DataAnalyst.java
+    ├── SecuritySpecialist.java
+    ├── Groups.java
+    ├── CooperationQuality.java
+    └── Skill.java
+```
+---
+
+## Spuštění projektu manuálně(Linux/MacOS)
 
 ```bash
-javac -d bin src/database_system_emp/*.java
-java -cp bin database_system_emp.Main
+java -cp "bin:lib/sqlite-jdbc-3.53.0.0.jar" database_system_emp.Main
 ```
 
 ## Licence

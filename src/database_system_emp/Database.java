@@ -1,4 +1,3 @@
-// Database.java
 package database_system_emp;
 
 import java.io.File;
