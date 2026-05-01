@@ -12,10 +12,11 @@ public abstract class Employee implements Skill {
   private String surName;
   private String yearOfBirth;
   private final Groups group;
+
   private Map<Integer, CooperationQuality> cooperation = new HashMap<>();
 
-  public Employee(String name, String surName, String yearOfBirth, Groups group) {
-
+  public Employee(String name, String surName, String yearOfBirth,
+                  Groups group) {
     this.id = counter++;
     this.name = name;
     this.surName = surName;
@@ -23,59 +24,49 @@ public abstract class Employee implements Skill {
     this.group = group;
   }
 
-  public int getId() {
-    return id;
-  }
+  public static Employee findById(int id) { return Main.TheMap.get(id); }
 
-  public String getName() {
-    return name;
-  }
+  public int getId() { return id; }
 
-  public String getSurName() {
-    return surName;
-  }
+  public String getName() { return name; }
 
-  public Groups getGroup() {
-    return group;
-  }
+  public String getSurName() { return surName; }
 
-  public String getYearOfBirth() {
-    return yearOfBirth;
-  }
+  public Groups getGroup() { return group; }
 
-  public void setId(int id){
+  public String getYearOfBirth() { return yearOfBirth; }
+
+  public void setId(int id) {
     this.id = id;
+    if (id >= counter) {
+      counter = id + 1;
+    }
   }
 
-  public void setName(String name) {
-    this.name = name;
-  }
+  public void setName(String name) { this.name = name; }
 
-  public void setSurName(String surName) {
-    this.surName = surName;
-  }
+  public void setSurName(String surName) { this.surName = surName; }
 
   public void setYearOfBirth(String yearOfBirth) {
     this.yearOfBirth = yearOfBirth;
   }
 
   public Map<Integer, CooperationQuality> getCooperation() {
-      return cooperation;
+    return cooperation;
   }
 
-  public void addCooperation(int id, CooperationQuality quality) {
-    cooperation.put(id, quality);
+  public void addCooperation(int employeeId, CooperationQuality quality) {
+    cooperation.put(employeeId, quality);
   }
 
-  public void removeCooperation(int id) {
-    cooperation.remove(id);
+  public void removeCooperation(int employeeId) {
+    cooperation.remove(employeeId);
   }
+
+  @Override public abstract void performSkill();
 
   @Override
-  public abstract void performSkill();
-
-  @Override
-  public String getSkillName(){
+  public String getSkillName() {
     return this.getClass().getSimpleName();
   }
 }
