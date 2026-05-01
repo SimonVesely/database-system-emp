@@ -9,6 +9,7 @@ bin/
 
 # Database
 *.db
+*.txt
 
 # Logs
 *.log
