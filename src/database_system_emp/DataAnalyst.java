@@ -1,6 +1,10 @@
 package database_system_emp;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class DataAnalyst extends Employee {
+
   public DataAnalyst(String name, String surName, String yearOfBirth) {
     super(name, surName, yearOfBirth, Groups.DATAANALYST);
   }
@@ -8,59 +12,49 @@ public class DataAnalyst extends Employee {
   @Override
   public void performSkill() {
     ConsoleInterface ci = new ConsoleInterface();
-    int employeeInfo = ci.getEmployeeInfo();
-    dataSkill(employeeInfo);
+    System.out.println("Analyse cooperations for which employee?");
+    Employee target = ci.findEmployee();
+    if (target == null) return;
+
+    Employee best = dataSkill(target);
+
+    if (best == null) {
+      System.out.println(target.getName() + " " + target.getSurName()
+          + " has no cooperations, or shares none with other employees.");
+    } else {
+      System.out.println("Employee with the most shared coworkers with "
+          + target.getName() + " " + target.getSurName() + ": "
+          + best.getName() + " " + best.getSurName()
+          + " (ID=" + best.getId() + ")");
+    }
   }
 
-  public int dataSkill(int id){
+  public Employee dataSkill(Employee empA) {
 
-    Employee empA = Main.TheList.get(id);
-    int sizeOfA = empA.getCooperation().size();
-    int max = 0;
-    int maxTemp = 0;
-    int maxId = -1;
+    Set<Integer> coopA = empA.getCooperation().keySet();
 
-    for(int i = 0; i < sizeOfA; i++){
-      int sizeOfB = Main.TheList.get(i).getCooperation().size();
-      Employee empB = Main.TheList.get(i);
+    Employee bestMatch = null;
+    int      bestCount = 0;
 
-      if(sizeOfA >= sizeOfB){
+    for (Employee empB : Main.TheMap.values()) {
 
-        for(int j = 0; j < sizeOfA; j++){
-          for(int k = 0; k < sizeOfB; k++){
-            if(empA.getCooperation().get(j) == empB.getCooperation().get(k)){
-              maxTemp++;
-            }
-          }
-        }
+      if (empB.getId() == empA.getId()) continue; 
 
+      Set<Integer> coopB = new HashSet<>(empB.getCooperation().keySet());
+      coopB.retainAll(coopA);          
+      int commonCount = coopB.size();
+
+      if (commonCount > bestCount) {
+        bestCount = commonCount;
+        bestMatch = empB;
       }
-
-      else{
-
-        for(int j = 0; j < sizeOfB; j++){
-          for(int k = 0; k < sizeOfA; k++){
-            if(empA.getCooperation().get(k) == empB.getCooperation().get(j)){
-              maxTemp++;
-            }
-          }
-        }
-
-      }
-
-      if(maxTemp > max){
-        max = maxTemp;
-        maxId = i;
-      }
-
     }
 
-    return maxId;
-
+    return bestMatch;
   }
 
   @Override
   public String getSkillName() {
-    return "Analys of most cooperating Employee";
+    return "Most shared coworker analysis";
   }
 }
